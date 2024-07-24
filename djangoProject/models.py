@@ -23,4 +23,5 @@ class Order(models.Model):
 
 
 class Client(AbstractUser):
+    passport_number = models.CharField(max_length=8)
     pass

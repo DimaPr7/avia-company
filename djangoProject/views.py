@@ -4,7 +4,7 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
 
-from djangoProject.models import Crew, Plane, Order
+from djangoProject.models import Crew, Plane, Order, Client
 
 
 @login_required
@@ -97,3 +97,25 @@ class OrderUpdateView(LoginRequiredMixin, generic.UpdateView):
 class OrderDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Order
     success_url = reverse_lazy("djangoProject:order-list")
+
+
+class ClientListView(LoginRequiredMixin, generic.ListView):
+    model = Client
+    context_object_name = "client_list"
+    paginate_by = 5
+
+
+class ClientDetailView(LoginRequiredMixin, generic.DetailView):
+    model = Client
+    context_object_name = "client"
+
+
+class ClientUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = Client
+    fields = "__all__"
+    success_url = reverse_lazy("djangoProject:client-list")
+
+
+class ClientDeleteView(LoginRequiredMixin, generic.DeleteView):
+    model = Client
+    success_url = reverse_lazy("djangoProject:client-list")
